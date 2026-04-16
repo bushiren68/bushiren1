@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>再寄一丘青 NEXZ💘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f0f0;
+        }
+
+        /* 手机端自适应主容器 */
+        .page-a4 {
+            width: 100vw;
+            height: 100vh;
+            max-width: 480px;
+            max-height: 850px;
+            background-color: #8ac7e8;
+            background-size: cover;
+            background-position: center;
+            font-family: "KaiTi", "楷体", sans-serif;
+            position: relative;
+            overflow: hidden;
+            transform-origin: center center;
+        }
+
+        /* 唱片样式 —— 整体旋转 */
+        .record {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #000;
+            top: 8%;
+            left: 8%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            z-index: 5;
+            animation: rotate 15s linear infinite;
+        }
+
+        .record-inner {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: url('https://s41.ax1x.com/2026/04/16/pesTuHH.png') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .record-center {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #000;
+            z-index: 2;
+        }
+
+        .record-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            font-size: 9px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 18px;
+        }
+
+        /* 唱片下方照片 */
+        .record-bottom-img {
+            position: absolute;
+            top: 42%;
+            /* 向下调整三行 */
+            left: 11%;
+            /* 向右调整一行 */
+            width: 110px;
+            height: 110px;
+            background: #fff;
+            padding: 4px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transform: rotate(-3deg);
+            z-index: 3;
+        }
+
+        .record-bottom-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 专辑卡片 */
+        .album-card {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            top: 12%;
+            right: 10%;
+            background: #fff;
+            padding: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: rotate(5deg);
+            z-index: 4;
+        }
+
+        .album-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 歌词卡片 */
+        .lyrics-card {
+            position: absolute;
+            width: 180px;
+            top: 32%;
+            right: 5%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-family: "SimSun", "宋体", serif;
+            z-index: 3;
+        }
+
+        .lyrics-card p {
+            font-size: 11px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        /* 歌词下方两张小图 */
+        .lyrics-bottom-imgs {
+            position: absolute;
+            top: 78%;
+            right: 5%;
+            /* 向左调整一行 */
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 3;
+        }
+
+        .lyrics-bottom-imgs img,
+        .lyrics-bottom-imgs .heart {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .heart {
+            color: #ff9ebb;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 小专辑 */
+        .small-album {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 60%;
+            /* 向上调整一行 */
+            left: 29%;
+            /* 向右调整一行 */
+            background: #fff;
+            padding: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: rotate(-10deg);
+            z-index: 4;
+        }
+
+        .small-album img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 播放器 */
+        .player-ui {
+            position: absolute;
+            width: 220px;
+            bottom: 12%;
+            left: 5%;
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 6;
+        }
+
+        .player-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .player-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+            overflow: hidden;
+        }
+
+        .player-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .player-info h4 {
+            font-size: 12px;
+        }
+
+        .player-info p {
+            font-size: 10px;
+            color: #888;
+        }
+
+        .player-progress {
+            width: 100%;
+            height: 6px;
+            background: #eee;
+            border-radius: 4px;
+            margin: 8px 0;
+        }
+
+        .progress-bar {
+            width: 60%;
+            height: 100%;
+            background: #8ac7e8;
+        }
+
+        .player-time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #888;
+        }
+
+        .player-controls {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 8px;
+        }
+
+        .player-controls button {
+            background: none;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* 标签文字 */
+        .hashtag {
+            position: absolute;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .hashtag-1 {
+            top: 3%;
+            left: 5%;
+            font-size: 14px;
+        }
+
+        .hashtag-2 {
+            top: 9%;
+            right: 5%;
+            font-size: 14px;
+        }
+
+        .hashtag-3 {
+            bottom: 8%;
+            left: 5%;
+            font-size: 14px;
+        }
+
+        .hashtag-4 {
+            top: 82%;
+            right: 3%;
+            font-size: 12px;
+            font-family: "LiSu", "隶书", sans-serif;
+        }
+
+        .subtitle {
+            position: absolute;
+            bottom: 6%;
+            right: 3%;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 12px;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-a4">
+        <div class="hashtag hashtag-1"># 再寄一丘青 NEXZ💘</div>
+        <div class="hashtag hashtag-2"># 💌2699</div>
+
+        <div class="lyrics-bottom-imgs">
+            <img src="https://s41.ax1x.com/2026/04/16/pesyVeK.png" alt="">
+            <span class="heart">♥</span>
+            <img src="https://s41.ax1x.com/2026/04/16/pesyeoD.png" alt="">
+        </div>
+
+        <div class="hashtag hashtag-4">Made by 不是人</div>
+
+        <!-- 唱片 -->
+        <div class="record">
+            <div class="record-inner">
+                <div class="record-center"></div>
+                <div class="record-text">NEXZ - HARD </div>
+            </div>
+        </div>
+
+        <!-- 唱片下方照片 -->
+        <div class="record-bottom-img">
+            <img src="https://s41.ax1x.com/2026/04/16/pesr5C9.jpg" alt="照片">
+        </div>
+
+        <!-- 专辑封面 -->
+        <div class="album-card">
+            <img src="https://s41.ax1x.com/2026/04/16/pesryj0.jpg" alt="专辑">
+        </div>
+
+        <!-- 歌词卡片 -->
+        <div class="lyrics-card">
+            <p> </p>
+            <p>我们一同描绘梦想</p>
+            <p>有一天会走向任何地方</p>
+            <p>总有一天我们能成为任何模样</p>
+            <p>说出口吧 Just say</p>
+            <p>向天空 Make a wish make a wish</p>
+            <p>这个愿望定会实现</p>
+            <p>在某一天 One Day</p>
+            <p>在我们不停奔跑的前方</p>
+            <p>定会望着同样的风景微笑</p>
+        </div>
+
+        <!-- 小专辑封面 -->
+        <div class="small-album">
+            <img src="https://s41.ax1x.com/2026/04/16/pesr2HU.jpg" alt="小专辑">
+        </div>
+
+        <!-- 播放器 -->
+        <div class="player-ui">
+            <div class="player-header">
+                <div class="player-avatar">
+                    <img src="https://s41.ax1x.com/2026/04/16/pesTiNR.png" alt="头像">
+                </div>
+                <div class="player-info">
+                    <h4>NEXZ - Next To Me</h4>
+                    <p>Beat-Boxer</p>
+                </div>
+            </div>
+            <div class="player-progress">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="player-time">
+                <span>01:51</span>
+                <span>02:51</span>
+            </div>
+            <div class="player-controls">
+                <button>⏮</button>
+                <button>⏴</button>
+                <button onclick="window.open('https://bushiren68.github.io/bushiren/','_blank')">▶</button>
+                <button>⏵</button>
+                <button>❤️</button>
+            </div>
+        </div>
+
+        <div class="hashtag hashtag-3">#I'm him</div>
+        <div class="subtitle">우리는 올라갈 일만 남았어 ·</div>
+    </div>
+</body>
+
+</html>
